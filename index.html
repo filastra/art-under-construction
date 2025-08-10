@@ -3,216 +3,186 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Under Construction — ArtViea Gallery</title>
+<title>ArtViea — Coming Soon</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+
 <style>
-:root{
-  --bg:#f8f6f2;
-  --panel:#ffffff;
-  --accent:#ff6f61;
-  --accent2:#fdd835;
-  --muted:#666;
-}
-*{box-sizing:border-box}
-html,body{height:100%;overflow-x:hidden}
-body{
-  margin:0;
-  font-family:Inter, "Helvetica Neue", Arial, sans-serif;
-  background:
-    radial-gradient(circle at 15% 20%, rgba(255,111,97,0.06), transparent 8%),
-    radial-gradient(circle at 80% 80%, rgba(253,216,53,0.06), transparent 10%),
-    linear-gradient(180deg, #faf7f4 0%, var(--bg) 100%);
-  color:#333;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:30px;
-}
+  :root{
+    --bg:#fbf7ef;
+    --panel:#fff8f0;
+    --muted:#6b6359;
+    --accent:#f7c948; /* warm yellow */
+    --accent-2:#d18b3a; /* deeper warm */
+    --ink:#2f2b28;
+    --glass: rgba(0,0,0,0.04);
+  }
 
-/* Card */
-.card{
-  width:100%;
-  max-width:980px;
-  background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.8));
-  border:1px solid rgba(0,0,0,0.05);
-  border-radius:14px;
-  padding:28px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-  position:relative;
-  overflow:hidden;
-}
+  /* reset & base */
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;background:linear-gradient(180deg,#fdf8f2,var(--bg));-webkit-font-smoothing:antialiased}
+  body{font-family:Inter,system-ui,Arial,sans-serif;color:var(--ink);display:flex;align-items:center;justify-content:center;padding:28px}
 
-/* Header */
-.header{
-  display:flex;
-  align-items:center;
-  gap:18px;
-}
-.logo{
-  width:72px;height:72px;border-radius:50%;
-  background:conic-gradient(from 90deg, var(--accent), var(--accent2), #9ccc65, var(--accent));
-  box-shadow:0 6px 20px rgba(0,0,0,0.15), inset 0 -6px 18px rgba(255,255,255,0.2);
-  display:flex;align-items:center;justify-content:center;
-  animation:spin 10s linear infinite;
-}
-.logo:after{
-  content:'';width:46px;height:46px;border-radius:50%;
-  background:linear-gradient(180deg,rgba(255,255,255,0.4), rgba(255,255,255,0.1));
-  box-shadow:inset 0 1px 0 rgba(255,255,255,0.5);
-}
-@keyframes spin{ to{ transform: rotate(360deg);} }
+  /* layout card */
+  .wrap{width:100%;max-width:1100px;background:var(--panel);border-radius:14px;box-shadow:0 12px 40px rgba(47,43,40,0.08);display:grid;grid-template-columns: 1fr 420px;gap:28px;overflow:hidden}
+  .left{padding:28px 18px;background:linear-gradient(180deg, rgba(247,201,72,0.03), transparent 40%);display:flex;align-items:center;justify-content:center}
+  .right{padding:36px 28px;display:flex;flex-direction:column;gap:18px;align-items:flex-start}
 
-/* Title */
-.title{flex:1;}
-.title h1{
-  margin:0;font-size:22px;letter-spacing:0.6px;
-  color:#444;
-}
-.title p{margin:4px 0 0;color:var(--muted);font-size:14px}
+  /* title */
+  h1{font-family:"Shadows Into Light",cursive;font-size:40px;margin:0;color:var(--ink);line-height:1}
+  .tag{font-size:14px;color:var(--muted);margin-top:6px}
 
-/* Paint drops animation */
-.paint{
-  display:flex;
-  gap:6px;
-  align-items:flex-end;
-  margin-left:16px;
-}
-.drop{
-  width:10px;
-  background:linear-gradient(180deg,var(--accent2), var(--accent));
-  height:10px;
-  border-radius:50%;
-  animation:drop 1s ease-in-out infinite;
-}
-.drop:nth-child(2){animation-delay:0.15s}
-.drop:nth-child(3){animation-delay:0.3s}
-.drop:nth-child(4){animation-delay:0.45s}
-.drop:nth-child(5){animation-delay:0.6s}
-@keyframes drop{
-  0%{transform:translateY(0); opacity:.4}
-  40%{transform:translateY(-14px) scale(1.1); opacity:1}
-  80%{transform:translateY(0); opacity:.6}
-  100%{opacity:.4}
-}
+  /* description */
+  .desc{color:var(--muted);font-size:15px;line-height:1.45;max-width:380px}
 
-/* Main content */
-.main{
-  display:grid;
-  grid-template-columns: 1fr 320px;
-  gap:22px;
-  margin-top:18px;
-  align-items:start;
-}
+  /* buttons */
+  .controls{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap}
+  .btn{background:linear-gradient(90deg,var(--accent),var(--accent-2));border:none;padding:12px 16px;border-radius:10px;color:#241f1a;font-weight:600;cursor:pointer;text-decoration:none;transition:transform .18s ease,box-shadow .18s ease}
+  .btn:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(213,146,64,0.18)}
+  .ghost{background:transparent;border:1px solid var(--glass);padding:10px 14px;border-radius:10px;color:var(--muted);text-decoration:none}
 
-/* Left */
-.left{
-  padding:20px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.7));
-  border-radius:10px;
-  border:1px solid rgba(0,0,0,0.05);
-}
-.left h2{margin:0 0 8px 0;font-size:20px;color:#444}
-.left p{color:var(--muted);margin:0 0 18px;font-size:15px}
+  /* socials */
+  .socials{display:flex;gap:10px;margin-top:6px}
+  .socials a{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;text-decoration:none;color:var(--ink);background:rgba(0,0,0,0.02);font-size:13px}
 
-/* Loader dots */
-.loader{
-  display:flex;gap:8px;align-items:center;
-}
-.dot{
-  width:12px;height:12px;border-radius:50%;
-  background: linear-gradient(180deg,var(--accent),var(--accent2));
-  animation:jump 1.2s ease-in-out infinite;
-}
-.dot:nth-child(2){animation-delay:0.2s}
-.dot:nth-child(3){animation-delay:0.4s}
-@keyframes jump{
-  0%{transform:translateY(0)}
-  50%{transform:translateY(-14px) scale(1.05)}
-  100%{transform:translateY(0)}
-}
+  /* footer */
+  .meta{font-size:13px;color:var(--muted);margin-top:12px;display:flex;justify-content:space-between;width:100%}
 
-/* Right panel - paint palette */
-.right{
-  padding:20px;
-  background:linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.7));
-  border-radius:10px;border:1px solid rgba(0,0,0,0.05);
-  display:flex;flex-direction:column;align-items:center;gap:14px;
-}
-.palette{
-  width:220px;height:220px;border-radius:50%;
-  background:conic-gradient(var(--accent) 0 20%, var(--accent2) 20% 40%, #9ccc65 40% 60%, #ffb74d 60% 80%, var(--accent) 80% 100%);
-  box-shadow:inset 0 -10px 30px rgba(255,255,255,0.4), 0 12px 40px rgba(0,0,0,0.1);
-  animation:spinfast 8s linear infinite;
-}
-@keyframes spinfast{ to{ transform: rotate(360deg);} }
+  /* SVG gallery frame hover effects */
+  .frame{fill:rgba(255,255,255,0.92);stroke:var(--ink);stroke-width:1;filter:drop-shadow(0 6px 18px rgba(47,43,40,0.06));transition:all .28s ease}
+  .frame:hover{transform:translateY(-6px) scale(1.02);filter:drop-shadow(0 18px 40px rgba(247,201,72,0.12))}
+  .sketch{stroke:var(--muted);stroke-width:1.6;fill:none;opacity:0.95}
 
-/* Footer / contact */
-.footer{margin-top:18px;display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:13px}
-.btn{
-  background:linear-gradient(90deg,var(--accent),var(--accent2));
-  border:none;padding:10px 16px;border-radius:8px;color:#fff;font-weight:600;cursor:pointer;
-  box-shadow:0 8px 24px rgba(0,0,0,0.1);
-}
-.small{font-size:13px;color:var(--muted)}
+  /* make svg elements use GPU */
+  svg, .frame, .sketch {will-change: transform; transform: translateZ(0)}
 
-/* Responsive */
-@media (max-width:880px){
-  .main{grid-template-columns:1fr; padding:8px}
-  .header{flex-direction:row; gap:12px}
-  .logo{width:58px;height:58px}
-  .right{order:-1}
-  .palette{width:180px;height:180px}
-}
+  /* responsive */
+  @media (max-width:980px){
+    .wrap{grid-template-columns: 1fr 360px}
+    h1{font-size:36px}
+  }
+  @media (max-width:780px){
+    .wrap{grid-template-columns:1fr;gap:18px}
+    .left{order:2}
+    .right{order:1;padding:20px}
+    h1{font-size:32px}
+    .wrap{padding-bottom:18px}
+  }
+
+  /* small phones */
+  @media (max-width:420px){
+    body{padding:14px}
+    .right{padding:18px}
+    h1{font-size:26px}
+    .desc{font-size:14px}
+    .btn{padding:10px 14px}
+  }
 </style>
 </head>
 <body>
-  <div class="card">
-    <div class="header">
-      <div class="logo" aria-hidden="true"></div>
-      <div class="title">
-        <h1>ArtViea — Under Construction</h1>
-        <p>Fine art, original paintings & gallery shop — launching soon</p>
-      </div>
-      <div class="paint" aria-hidden="true">
-        <div class="drop"></div><div class="drop"></div><div class="drop"></div><div class="drop"></div><div class="drop"></div>
-      </div>
+  <div class="wrap" role="main" aria-labelledby="title">
+    <!-- LEFT: Gallery wall (inline SVG sketch) -->
+    <div class="left" aria-hidden="false">
+      <svg width="100%" height="100%" viewBox="0 0 800 520" preserveAspectRatio="xMidYMid meet" aria-label="Gallery wall sketch">
+        <!-- warm spotlight wash -->
+        <defs>
+          <radialGradient id="spot" cx="30%" cy="20%" r="60%">
+            <stop offset="0%" stop-color="rgba(247,201,72,0.25)"/>
+            <stop offset="45%" stop-color="rgba(247,201,72,0.08)"/>
+            <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+          </radialGradient>
+        </defs>
+
+        <!-- background subtle tone -->
+        <rect x="0" y="0" width="800" height="520" fill="url(#spot)"/>
+
+        <!-- wall base (sketchy) -->
+        <g transform="translate(40,20)" class="sketch" stroke-linecap="round" stroke-linejoin="round">
+          <!-- floor line -->
+          <path d="M0 420 L720 420" stroke="rgba(47,43,40,0.06)" stroke-width="18" opacity="0.6"/>
+
+          <!-- three frames -->
+          <!-- frame 1 -->
+          <g transform="translate(24,40)" >
+            <rect class="frame" x="0" y="0" width="180" height="140" rx="6" ry="6"/>
+            <!-- painting stroke -->
+            <path class="sketch" d="M12 24 q40 18 80 8 t80 10" stroke-width="2.2" />
+            <path class="sketch" d="M12 60 q40 -10 80 2 t80 -6" stroke-width="1.8" />
+          </g>
+
+          <!-- frame 2 (center, larger) -->
+          <g transform="translate(230,6)" >
+            <rect class="frame" x="0" y="0" width="320" height="200" rx="8" ry="8"/>
+            <!-- abstract shapes -->
+            <path class="sketch" d="M18 36 q36 26 80 18 t120 12" stroke-width="2.6"/>
+            <path class="sketch" d="M42 90 q40 -34 128 -20" stroke-width="2.2"/>
+          </g>
+
+          <!-- frame 3 -->
+          <g transform="translate(578,70)" >
+            <rect class="frame" x="0" y="0" width="120" height="120" rx="6" ry="6"/>
+            <path class="sketch" d="M12 22 q30 10 60 6" stroke-width="1.8"/>
+          </g>
+
+          <!-- small easel sketch -->
+          <g transform="translate(40,260) scale(0.9)">
+            <path d="M30 20 L70 20" class="sketch" stroke-width="2" />
+            <path d="M50 20 L50 120" class="sketch" stroke-width="2" />
+            <rect x="34" y="32" width="34" height="40" rx="4" class="frame"/>
+          </g>
+
+          <!-- visitors (minimal strokes) -->
+          <g transform="translate(340,320)" class="sketch" stroke-width="2.2">
+            <path d="M4 30 q8 -18 16 0" />
+            <path d="M40 30 q8 -22 18 0" />
+            <path d="M0 38 L70 38" stroke-width="1.2" opacity="0.6"/>
+          </g>
+
+          <!-- small plant -->
+          <g transform="translate(680,300)" class="sketch">
+            <path d="M8 36 q10 -24 20 0" stroke-width="1.8"/>
+            <path d="M18 36 q6 -18 12 0" stroke-width="1.6"/>
+            <path d="M0 48 L36 48" stroke-width="1.2" opacity="0.5"/>
+          </g>
+        </g>
+
+        <!-- gentle decorative light strokes on top (non-interactive) -->
+        <g transform="translate(0,0)">
+          <ellipse cx="200" cy="20" rx="160" ry="40" fill="rgba(247,201,72,0.06)"/>
+          <ellipse cx="520" cy="80" rx="140" ry="30" fill="rgba(247,201,72,0.04)"/>
+        </g>
+      </svg>
     </div>
 
-    <div class="main">
-      <div class="left">
-        <h2>We’re painting our masterpiece</h2>
-        <p>Thanks for visiting. Our gallery is being refreshed with new art collections, exhibitions, and online shopping experience. See you soon!</p>
-
-        <div style="margin-top:18px">
-          <div class="small">Estimated opening:</div>
-          <div style="font-weight:700;margin-top:6px">October 2025</div>
-        </div>
-
-        <div style="margin-top:18px" class="loader" aria-hidden="true">
-          <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-        </div>
-
-        <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
-          <button class="btn" onclick="location.href='mailto:hello@artviea.com'">Contact Us</button>
-          <button class="btn" onclick="location.href='#'">Subscribe</button>
-        </div>
+    <!-- RIGHT: content & actions -->
+    <div class="right">
+      <div>
+        <h1 id="title">ArtViea</h1>
+        <div class="tag">An elegant gallery & original paintings — opening soon</div>
       </div>
 
-      <div class="right" aria-hidden="true">
-        <div class="palette" role="img" aria-label="rotating paint palette"></div>
-        <div class="small">Follow us:</div>
-        <div style="display:flex;gap:10px">
-          <a class="btn" href="#" style="text-decoration:none">Instagram</a>
-          <a class="btn" href="#" style="text-decoration:none">Facebook</a>
-          <a class="btn" href="#" style="text-decoration:none">Pinterest</a>
-        </div>
-      </div>
-    </div>
+      <p class="desc">
+        We are curating original artworks, seasonal exhibitions and a refined online gallery boutique.
+        Sign up for early access, commission inquiries, and gallery news.
+      </p>
 
-    <div class="footer">
-      <div class="small">© ArtViea 2025</div>
-      <div class="small">Need help? <a href="mailto:hello@artviea.com" style="color:var(--accent);text-decoration:none">hello@artviea.com</a></div>
+      <div class="controls">
+        <a class="btn" href="mailto:hello@artviea.com?subject=ArtViea%20Inquiry">Contact</a>
+        <a class="btn" href="#" aria-label="Subscribe to updates">Subscribe</a>
+        <a class="ghost" href="#" aria-label="Learn more">About</a>
+      </div>
+
+      <div class="socials" aria-hidden="false">
+        <a href="#" aria-label="Instagram">Instagram</a>
+        <a href="#" aria-label="Pinterest">Pinterest</a>
+        <a href="#" aria-label="Facebook">Facebook</a>
+      </div>
+
+      <div class="meta" aria-hidden="true">
+        <div>© ArtViea 2025</div>
+        <div>Need help? <a href="mailto:hello@artviea.com" style="color:var(--accent);text-decoration:none">hello@artviea.com</a></div>
+      </div>
     </div>
   </div>
 </body>
 </html>
-
