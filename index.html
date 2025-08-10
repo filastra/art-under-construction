@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Under Construction — ArtViea Gallery</title>
+<style>
+:root{
+  --bg:#f8f6f2;
+  --panel:#ffffff;
+  --accent:#ff6f61;
+  --accent2:#fdd835;
+  --muted:#666;
+}
+*{box-sizing:border-box}
+html,body{height:100%;overflow-x:hidden}
+body{
+  margin:0;
+  font-family:Inter, "Helvetica Neue", Arial, sans-serif;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255,111,97,0.06), transparent 8%),
+    radial-gradient(circle at 80% 80%, rgba(253,216,53,0.06), transparent 10%),
+    linear-gradient(180deg, #faf7f4 0%, var(--bg) 100%);
+  color:#333;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:30px;
+}
+
+/* Card */
+.card{
+  width:100%;
+  max-width:980px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.8));
+  border:1px solid rgba(0,0,0,0.05);
+  border-radius:14px;
+  padding:28px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+  position:relative;
+  overflow:hidden;
+}
+
+/* Header */
+.header{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+.logo{
+  width:72px;height:72px;border-radius:50%;
+  background:conic-gradient(from 90deg, var(--accent), var(--accent2), #9ccc65, var(--accent));
+  box-shadow:0 6px 20px rgba(0,0,0,0.15), inset 0 -6px 18px rgba(255,255,255,0.2);
+  display:flex;align-items:center;justify-content:center;
+  animation:spin 10s linear infinite;
+}
+.logo:after{
+  content:'';width:46px;height:46px;border-radius:50%;
+  background:linear-gradient(180deg,rgba(255,255,255,0.4), rgba(255,255,255,0.1));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.5);
+}
+@keyframes spin{ to{ transform: rotate(360deg);} }
+
+/* Title */
+.title{flex:1;}
+.title h1{
+  margin:0;font-size:22px;letter-spacing:0.6px;
+  color:#444;
+}
+.title p{margin:4px 0 0;color:var(--muted);font-size:14px}
+
+/* Paint drops animation */
+.paint{
+  display:flex;
+  gap:6px;
+  align-items:flex-end;
+  margin-left:16px;
+}
+.drop{
+  width:10px;
+  background:linear-gradient(180deg,var(--accent2), var(--accent));
+  height:10px;
+  border-radius:50%;
+  animation:drop 1s ease-in-out infinite;
+}
+.drop:nth-child(2){animation-delay:0.15s}
+.drop:nth-child(3){animation-delay:0.3s}
+.drop:nth-child(4){animation-delay:0.45s}
+.drop:nth-child(5){animation-delay:0.6s}
+@keyframes drop{
+  0%{transform:translateY(0); opacity:.4}
+  40%{transform:translateY(-14px) scale(1.1); opacity:1}
+  80%{transform:translateY(0); opacity:.6}
+  100%{opacity:.4}
+}
+
+/* Main content */
+.main{
+  display:grid;
+  grid-template-columns: 1fr 320px;
+  gap:22px;
+  margin-top:18px;
+  align-items:start;
+}
+
+/* Left */
+.left{
+  padding:20px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.7));
+  border-radius:10px;
+  border:1px solid rgba(0,0,0,0.05);
+}
+.left h2{margin:0 0 8px 0;font-size:20px;color:#444}
+.left p{color:var(--muted);margin:0 0 18px;font-size:15px}
+
+/* Loader dots */
+.loader{
+  display:flex;gap:8px;align-items:center;
+}
+.dot{
+  width:12px;height:12px;border-radius:50%;
+  background: linear-gradient(180deg,var(--accent),var(--accent2));
+  animation:jump 1.2s ease-in-out infinite;
+}
+.dot:nth-child(2){animation-delay:0.2s}
+.dot:nth-child(3){animation-delay:0.4s}
+@keyframes jump{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-14px) scale(1.05)}
+  100%{transform:translateY(0)}
+}
+
+/* Right panel - paint palette */
+.right{
+  padding:20px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.7));
+  border-radius:10px;border:1px solid rgba(0,0,0,0.05);
+  display:flex;flex-direction:column;align-items:center;gap:14px;
+}
+.palette{
+  width:220px;height:220px;border-radius:50%;
+  background:conic-gradient(var(--accent) 0 20%, var(--accent2) 20% 40%, #9ccc65 40% 60%, #ffb74d 60% 80%, var(--accent) 80% 100%);
+  box-shadow:inset 0 -10px 30px rgba(255,255,255,0.4), 0 12px 40px rgba(0,0,0,0.1);
+  animation:spinfast 8s linear infinite;
+}
+@keyframes spinfast{ to{ transform: rotate(360deg);} }
+
+/* Footer / contact */
+.footer{margin-top:18px;display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:13px}
+.btn{
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  border:none;padding:10px 16px;border-radius:8px;color:#fff;font-weight:600;cursor:pointer;
+  box-shadow:0 8px 24px rgba(0,0,0,0.1);
+}
+.small{font-size:13px;color:var(--muted)}
+
+/* Responsive */
+@media (max-width:880px){
+  .main{grid-template-columns:1fr; padding:8px}
+  .header{flex-direction:row; gap:12px}
+  .logo{width:58px;height:58px}
+  .right{order:-1}
+  .palette{width:180px;height:180px}
+}
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="header">
+      <div class="logo" aria-hidden="true"></div>
+      <div class="title">
+        <h1>ArtViea — Under Construction</h1>
+        <p>Fine art, original paintings & gallery shop — launching soon</p>
+      </div>
+      <div class="paint" aria-hidden="true">
+        <div class="drop"></div><div class="drop"></div><div class="drop"></div><div class="drop"></div><div class="drop"></div>
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="left">
+        <h2>We’re painting our masterpiece</h2>
+        <p>Thanks for visiting. Our gallery is being refreshed with new art collections, exhibitions, and online shopping experience. See you soon!</p>
+
+        <div style="margin-top:18px">
+          <div class="small">Estimated opening:</div>
+          <div style="font-weight:700;margin-top:6px">October 2025</div>
+        </div>
+
+        <div style="margin-top:18px" class="loader" aria-hidden="true">
+          <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        </div>
+
+        <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn" onclick="location.href='mailto:hello@artviea.com'">Contact Us</button>
+          <button class="btn" onclick="location.href='#'">Subscribe</button>
+        </div>
+      </div>
+
+      <div class="right" aria-hidden="true">
+        <div class="palette" role="img" aria-label="rotating paint palette"></div>
+        <div class="small">Follow us:</div>
+        <div style="display:flex;gap:10px">
+          <a class="btn" href="#" style="text-decoration:none">Instagram</a>
+          <a class="btn" href="#" style="text-decoration:none">Facebook</a>
+          <a class="btn" href="#" style="text-decoration:none">Pinterest</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="small">© ArtViea 2025</div>
+      <div class="small">Need help? <a href="mailto:hello@artviea.com" style="color:var(--accent);text-decoration:none">hello@artviea.com</a></div>
+    </div>
+  </div>
+</body>
+</html>
+
