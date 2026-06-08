@@ -6,6 +6,3 @@ workers_dev = true
 [assets]
 directory ="./public"
 
-
-
-
